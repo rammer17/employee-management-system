@@ -1,0 +1,54 @@
+<div hlmCard class="w-full p-3">
+  <div hlmCardHeader class="flex justify-center items-center relative">
+    <div class="absolute right-0 top-0 cursor-pointer">
+      <hlm-alert-dialog>
+        <button hlmBtn variant="destructive" class="p-1 h-auto" brnAlertDialogTrigger>
+          <hlm-icon size='sm' name="lucideTrash" class="float-end"/>
+        </button>
+        <hlm-alert-dialog-content *brnAlertDialogContent='let ctx'>
+          <hlm-alert-dialog-header>
+            <h3 hlmAlertDialogTitle>Are you absolutely sure?</h3>
+            <p hlmAlertDialogDescription>
+              This action cannot be undone. This will permanently delete
+              <span class="font-bold">{{ employee().firstName }} {{ employee().lastName }}</span>
+              and remove their data from our
+              servers.
+            </p>
+          </hlm-alert-dialog-header>
+          <hlm-alert-dialog-footer>
+            <button hlmAlertDialogCancel (click)='ctx.close()'>Cancel</button>
+            <button hlmBtn variant="destructive" (click)='ctx.close(); onDeleteEmployee()'>Delete Employee</button>
+          </hlm-alert-dialog-footer>
+        </hlm-alert-dialog-content>
+      </hlm-alert-dialog>
+    </div>
+    <hlm-avatar variant="large">
+      <img [src]='employee().imageUrl' alt='spartan logo. Resembling a spartanic shield' hlmAvatarImage/>
+      <span class='text-white bg-destructive' hlmAvatarFallback>RG</span>
+    </hlm-avatar>
+    <div hlmCardDescription class="font-bold flex flex-col items-center">
+      <span>
+      {{ employee().firstName }} {{ employee().lastName }}
+      </span>
+      <span class="text-slate-400">
+        {{ employee().position }}
+      </span>
+    </div>
+  </div>
+  <div hlmCardContent class="p-3 bg-accent rounded border-border border relative">
+    <button hlmBtn variant="secondary" class="p-1 h-auto absolute top-2 right-2" (click)="onEditEmployee()">
+      <hlm-icon size='sm' name="lucideEdit" class="float-end"/>
+    </button>
+    <div class="flex gap-1 mb-2">
+      <hlm-icon size='sm' name="lucideHome"/>
+      <span class="text-sm pr-4 whitespace-break-spaces">{{ employee().address }}</span>
+    </div>
+    <div class="flex gap-1">
+      <hlm-icon size='sm' name="lucideContact"/>
+      <div class="flex flex-col items-start gap-2">
+        <a [href]="'mailto:' + employee().email" hlmBadge class="break-all">{{ employee().email }}</a>
+        <a [href]="'tel:' + employee().phone" hlmBadge class="break-all">{{ employee().phone }}</a>
+      </div>
+    </div>
+  </div>
+</div>

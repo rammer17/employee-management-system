@@ -1,0 +1,69 @@
+<hlm-dialog [state]="state()" (closed)="onCloseModal()">
+  <hlm-dialog-content *brnDialogContent="let ctx">
+    <hlm-dialog-header>
+      <h1 class="text-2xl font-bold">{{modeLabel() + " employee"}}</h1>
+      @if (mode() === 'UPDATE') {
+        <p brnDialogDescription hlm>Make changes to employee details here. Click update when you're done.</p>
+      }
+    </hlm-dialog-header>
+    <form [formGroup]="employeeForm!">
+      <div class="flex gap-5 my-5">
+        <div class="w-1/2">
+          <label hlmLabel>
+            First Name
+            <input class="w-full" hlmInput type="text" formControlName="firstName" placeholder="John"/>
+          </label>
+        </div>
+        <div class="w-1/2">
+          <label hlmLabel>
+            Last Name
+            <input class="w-full" hlmInput type="text" formControlName="lastName" placeholder="Doe"/>
+          </label>
+        </div>
+      </div>
+
+      <div class="w-full my-5">
+        <label hlmLabel>
+          Email
+          <input class="w-full" hlmInput type="email" formControlName="email" placeholder="john.doe@example.com"/>
+        </label>
+      </div>
+
+      <div class="w-full my-5">
+        <label hlmLabel>
+          Address
+          <input class="w-full" hlmInput type="text" formControlName="address"
+                 placeholder="123 Main St, City, Country"/>
+        </label>
+      </div>
+
+      <div class="w-full my-5">
+        <label hlmLabel>
+          Phone number
+          <input class="w-full" hlmInput type="text" formControlName="phone" placeholder="+1234567890"/>
+        </label>
+      </div>
+
+      <div class="w-full my-5">
+        <label hlmLabel>
+          Image URL
+          <input class="w-full" hlmInput type="text" formControlName="imageUrl"
+                 placeholder="https://example.com/image.png"/>
+        </label>
+        <span class="text-gray-400 text-xs">Provide a URL to the employee's profile picture.</span>
+      </div>
+
+      <div class="w-full my-5">
+        <label hlmLabel>
+          Position
+          <input class="w-full" hlmInput type="text" formControlName="position" placeholder="Software engineer"/>
+        </label>
+      </div>
+
+
+    </form>
+    <hlm-dialog-footer>
+      <button hlmBtn type="button" (click)="onSubmitForm()">{{ modeLabel() }}</button>
+    </hlm-dialog-footer>
+  </hlm-dialog-content>
+</hlm-dialog>
