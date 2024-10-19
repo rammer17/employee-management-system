@@ -1,0 +1,23 @@
+<div class="w-full flex justify-between mb-10">
+  <div class="flex gap-5">
+    <div class='flex items-center w-full max-w-sm space-x-2'>
+      <input class='w-full' hlmInput type='text' placeholder='Type...' [(ngModel)]="searchValue"/>
+      <button hlmBtn (click)="onSearchEmployees()">Search</button>
+    </div>
+  </div>
+
+  <button hlmBtn (click)="onAddEmployee()">
+    <hlm-icon size='sm' name="lucideUserPlus2"/>
+    Add
+  </button>
+</div>
+
+<div
+  class="w-full h-full grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  grid-md gap-3">
+  @if (vm$ | async; as vm) {
+    @for (employee of vm.employees; track employee.id) {
+      <app-employee-card [employee]="employee"></app-employee-card>
+    }
+    <app-employee-crud></app-employee-crud>
+  }
+</div>
